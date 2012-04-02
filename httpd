@@ -1,0 +1,25 @@
+#!/bin/bash
+# SERVER:
+
+# Env:
+serv="MainNika BashHttpd, "`uname -rmno`
+tmp=tmp$RANDOM
+pwd=$1
+
+# Get method, get line and protocol from std input:
+read method get protocol
+
+# Create content:
+eval "`cat mkcontent`" > $tmp.c
+
+# Create header:
+eval "`cat mkheader`" > $tmp.h
+
+# Concat header and content:
+cat $tmp.h $tmp.c > $tmp
+
+# Echo to std output:
+cat $tmp
+
+# Del temp files:
+rm $tmp.c $tmp.h $tmp

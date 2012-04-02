@@ -1,0 +1,25 @@
+#!/bin/bash
+# LAUNCHER:
+
+BIND_PORT="8080"
+BIND_IP="0.0.0.0"
+
+# Get home directory:
+if [ "$1" != "" ]
+then
+ pwd=$1
+ if [ ! -d "$1" ]
+ then
+  pwd=`pwd`
+ fi
+else
+ pwd=`pwd`
+fi
+
+echo "Home: $pwd"
+
+# Inf loop:
+while :;
+do
+ nc -s $BIND_IP -lnvp $BIND_PORT -c "./httpd $pwd";
+done
