@@ -3,10 +3,6 @@
 
 # Fix doubleslash in "current" directory:
 curr=`echo "$pwd/.$get" | sed 's/\/\//\//g'`
-ok=""
-
-# Execute service functions:
-eval "`cat mkcontrol`"
 
 # Debug
 # echo -e "pwd: $pwd; get: $get; curr: $curr\n" >> qwe

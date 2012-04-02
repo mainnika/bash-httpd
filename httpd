@@ -9,6 +9,12 @@ pwd=$1
 # Get method, get line and protocol from std input:
 read method get protocol
 
+# Flag
+ok=""
+
+# Execute service functions:
+eval "`cat mkcontrol`"
+
 # Create content:
 eval "`cat mkcontent`" > $tmp.c
 
