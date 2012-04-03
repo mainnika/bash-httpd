@@ -17,6 +17,8 @@ else
  pwd=`pwd`
 fi
 
+echo "User: $FORCE_USER"
+echo "Ip: $BIND_IP:$BIND_PORT"
 echo "Home: $pwd"
 
 # Inf loop:
