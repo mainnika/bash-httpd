@@ -19,6 +19,5 @@ fi
 
 echo "Home: $pwd"
 
-
 # Inf loop:
 su $FORCE_USER -c "while :; do nc -s $BIND_IP -lnvp $BIND_PORT -c \"./httpd $pwd\"; done"
