@@ -1,0 +1,32 @@
+#!/bin/bash
+# SERVER:
+
+# Env:
+serv="MainNika BashHttpd, "`uname -rmno`
+dirtmp=/var/cache/mnbash
+tmp=tmp$RANDOM
+pwd=$1
+
+# Get method, get line and protocol from std input:
+read method get protocol
+
+# Flag
+ok=""
+
+# Execute service functions:
+eval "`cat mkcontrol`"
+
+# Create content:
+eval "`cat mkcontent`" > $dirtmp/$tmp.c
+
+# Create header:
+eval "`cat mkheader`" > $dirtmp/$tmp.h
+
+# Concat header and content:
+cat $dirtmp/$tmp.h $dirtmp/$tmp.c > $dirtmp/$tmp
+
+# Echo to std output:
+cat $dirtmp/$tmp
+
+# Del temp files:
+rm $dirtmp/$tmp.c $dirtmp/$tmp.h $dirtmp/$tmp

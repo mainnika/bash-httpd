@@ -1,0 +1,24 @@
+#!/bin/bash
+# LAUNCHER:
+
+FORCE_USER="www-data"
+BIND_PORT="8087"
+BIND_IP="127.0.0.1"
+
+# Get home directory:
+if [ "$1" != "" ]
+then
+ pwd=$1
+ if [ ! -d "$1" ]
+ then
+  pwd=`pwd`
+ fi
+else
+ pwd=`pwd`
+fi
+
+echo "Home: $pwd"
+
+
+# Inf loop:
+su $FORCE_USER -c "while :; do nc -s $BIND_IP -lnvp $BIND_PORT -c \"./httpd $pwd\"; done"

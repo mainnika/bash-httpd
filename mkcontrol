@@ -1,0 +1,22 @@
+#!/bin/bash
+
+arg=`echo $get | cut -d'?' -f1`
+par=`echo $get | cut -d'?' -f2`
+
+# Exit command: 
+#if [ "$arg" == "/___exit" ]
+#then
+# rm $tmp*
+# killall launcher nc
+# exit 0
+# Chroot control:
+#elif [ "$arg" == "/___chroot" ]
+#then
+# if [ -d "$par" ]
+# then
+#  pwd=$par
+#  echo "New home: $pwd"
+#  ok="ok"
+# fi
+#fi
+

@@ -1,0 +1,10 @@
+Simple HTTP 1.0 Server on Bash
+You need netcat with support "-c" option (nc -h to show options list).
+
+To start the server, write:
+
+$ ./launcher /var/www
+
+Where "/var/www" - Home directory for server
+
+For change ip and port, you need to edit "launcher" and change BIND_IP and BIND_PORT

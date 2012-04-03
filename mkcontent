@@ -1,0 +1,49 @@
+#!/bin/bash
+# CONTENT:
+
+# Fix doubleslash in "current" directory:
+curr=`echo "$pwd/.$get" | sed 's/\/\//\//g'`
+
+# Debug
+# echo -e "pwd: $pwd; get: $get; curr: $curr\n" >> qwe
+
+if [[ -d "$curr" && "$ok" == "" ]]
+then
+ # Check index.html in dir, if exist, skip directory list:
+ if [ ! -f "$curr/index.html" ]
+ then
+  # List directories:
+  type="text/html"
+  # Fix doubleslash in links:
+  plink=`echo "$get/" |  sed '/\/\// s/\/\//\//g'`
+  # Create Html Page:
+  echo "<html><head><title>Directory: $plink</title></head><body><h1>Directory: $plink</h1>"
+  ls -1a "$curr" | while read tdir
+  do
+   echo "<a href="$plink$tdir">$tdir</a><br />"
+  done
+  echo "<hr />Server: $serv</body></html>"
+  ok="ok"
+ else
+  # Echo index.html in next "IF":
+  curr="$curr/index.html"
+ fi
+fi
+
+# File output, if exist:
+if [[ -f "$curr" && "$ok" == "" ]]
+then
+ # File mime type:
+ type=`file -bi "$curr"`
+ cat "$curr"
+ ok="ok"
+fi
+
+# Not found page:
+if [ "$ok" == "" ]
+then
+ status=404
+ type="text/html"
+ echo "<html><head><title>ERROR 404</title></head><body><h1>ERROR 404</h1>File Not Found<hr />Server: $serv</body></html>"
+ ok="ok"
+fi

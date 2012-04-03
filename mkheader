@@ -1,0 +1,31 @@
+#!/bin/bash
+# HEADER:
+
+# Check preinstalled status code:
+if [ "$status" == "" ]
+then
+ status=200
+fi
+# Get Status Message from file:
+statusmsg=$(cat statuslist | grep $status | cut -d'=' -f2)
+
+# Check preinstalled content type:
+if [ "$type" == "" ]
+then
+ type="text/plain"
+fi
+
+# Write header:
+echo "HTTP/1.0 $status $statusmsg"
+echo "Server: $serv"
+echo "Connection: close"
+echo "Content-Length: "`cat $dirtmp/$tmp.c | wc -c | cut -d' ' -f 1`
+echo "Content-Type: $type"
+
+# Write custom headers:
+if [ "$header" != "" ]
+then
+echo "$header"
+fi
+
+echo
