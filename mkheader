@@ -19,7 +19,7 @@ fi
 echo "HTTP/1.0 $status $statusmsg"
 echo "Server: $serv"
 echo "Connection: close"
-echo "Content-Length: "`cat $dirtmp/$tmp.c | wc -c | cut -d' ' -f 1`
+echo "Content-Length: "`cat "$dirtmp/$tmp.c" | wc -c | cut -d' ' -f 1`
 echo "Content-Type: $type"
 
 # Write custom headers:
