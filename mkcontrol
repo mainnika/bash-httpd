@@ -4,7 +4,6 @@ arg=`echo $get | cut -d'?' -f1`
 par=`echo $get | cut -d'?' -f2`
 
 # Exit command: 
-<<<<<<< HEAD
 #if [ "$arg" == "/___exit" ]
 #then
 # rm $tmp*
@@ -20,21 +19,4 @@ par=`echo $get | cut -d'?' -f2`
 #  ok="ok"
 # fi
 #fi
-=======
-if [ "$arg" == "/___exit" ]
-then
- rm $tmp*
- kill $PPID
- exit 0
-# Chroot control:
-elif [ "$arg" == "/___chroot" ]
-then
- if [ -d "$par" ]
- then
-  pwd=$par
-  echo "New home: $pwd"
-  ok="ok"
- fi
-fi
->>>>>>> 10212aecc83b8e8379f5d71c86cf50ca32db7f81
 
