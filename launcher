@@ -6,20 +6,15 @@ BIND_PORT="8087"
 BIND_IP="127.0.0.1"
 
 # Get home directory:
-if [ "$1" != "" ]
+pwd=`pwd`
+if [ -d "$1" ]
 then
  pwd=$1
- if [ ! -d "$1" ]
- then
-  pwd=`pwd`
- fi
-else
- pwd=`pwd`
 fi
 
 echo "User: $FORCE_USER"
 echo "Ip: $BIND_IP:$BIND_PORT"
 echo "Home: $pwd"
 
-# Inf loop:
-su $FORCE_USER -c "while :; do nc -s $BIND_IP -lnvp $BIND_PORT -c \"./httpd $pwd\"; done"
+# Loop while not Ctrl+C:
+su $FORCE_USER -c "while [ $? -eq 0 ]; do nc -s $BIND_IP -lnvp $BIND_PORT -c \"./httpd $pwd\"; done"
